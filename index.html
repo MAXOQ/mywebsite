@@ -29,8 +29,26 @@
             font-size: 18px;
             cursor: pointer;
         }
+
+        .sidebar {
+            height: 100%;
+            width: 160px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            background-color: rgb(200, 200, 200);
+            overflow-x: hidden;
+            padding-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar.dark-mode {
+            background-color: #333;
+        }
     </style>
 </head>
+
 <body>
     <h1>
         My Website
@@ -39,23 +57,23 @@
         This is a test for me learning to make HTML/CSS/JS, come back later for more content!
         <br>To the people I am sharing this with, yes I actually made a website and got it online.
     </p>
-    <input type="checkbox" id="DarkMode" name="darkMode" value="Dark">
-    <label for="DarkMode"> Dark mode</label><br>
+    <div class="sidebar">
+        <input type="checkbox" id="DarkMode" name="darkMode" value="Dark">
+        <label for="DarkMode"> Dark mode</label><br>
+    </div>
+
     <script>
         const darkModeCheckbox = document.getElementById('DarkMode');
         const body = document.body;
+        const sidebar = document.querySelector('.sidebar');
 
-        if (localStorage.getItem('darkMode') === 'true') {
-            body.classList.add('dark-mode');
-            darkModeCheckbox.checked = true;
-        }
         darkModeCheckbox.addEventListener('change', () => {
             if (darkModeCheckbox.checked) {
                 body.classList.add('dark-mode');
-                localStorage.setItem('darkMode', 'true');
+                sidebar.classList.add('dark-mode');
             } else {
                 body.classList.remove('dark-mode');
-                localStorage.setItem('darkMode', 'false');
+                sidebar.classList.remove('dark-mode');
             }
         });
     </script>
