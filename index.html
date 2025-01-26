@@ -22,7 +22,7 @@
         }
 
         h1.dark-mode {
-            color: #ddd;
+            color: #a1a1a1;
         }
 
         label {
@@ -58,24 +58,38 @@
         <br>To the people I am sharing this with, yes I actually made a website and got it online.
     </p>
     <div class="sidebar">
-        <input type="checkbox" id="DarkMode" name="darkMode" value="Dark">
+        <input type="checkbox" id="DarkMode" name="darkMode" value="Dark" checked>
         <label for="DarkMode"> Dark mode</label><br>
     </div>
-
     <script>
-        const darkModeCheckbox = document.getElementById('DarkMode');
-        const body = document.body;
-        const sidebar = document.querySelector('.sidebar');
-
-        darkModeCheckbox.addEventListener('change', () => {
-            if (darkModeCheckbox.checked) {
-                body.classList.add('dark-mode');
-                sidebar.classList.add('dark-mode');
-            } else {
-                body.classList.remove('dark-mode');
-                sidebar.classList.remove('dark-mode');
+    const darkModeCheckbox = document.getElementById('DarkMode');
+    const darkModeElements = [
+        document.body,
+        document.querySelector('h1'),
+        document.querySelector('.sidebar')
+    ];
+    function toggleDarkMode(isDarkMode) {
+        darkModeElements.forEach(element => {
+            if (element) {
+                if (isDarkMode) {
+                    element.classList.add('dark-mode');
+                } else {
+                    element.classList.remove('dark-mode');
+                }
             }
         });
+    }
+    function start() {
+        toggleDarkMode(true);
+    }
+    darkModeCheckbox.addEventListener('change', () => {
+        if (darkModeCheckbox.checked) {
+            toggleDarkMode(true);
+        } else {
+            toggleDarkMode(false);
+        }
+    });
+    window.onload = start;
     </script>
 </body>
 </html>
