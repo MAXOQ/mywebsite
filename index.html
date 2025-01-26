@@ -3,7 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My site</title>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        h1.dark-mode {
+            color: #ddd;
+        }
+
+        label {
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>
@@ -11,7 +37,27 @@
     </h1>
     <p>
         This is a test for me learning to make HTML/CSS/JS, come back later for more content!
-        <br>To the people I am sharing this with, yes I actualty made a website and got it online.
+        <br>To the people I am sharing this with, yes I actually made a website and got it online.
     </p>
+    <input type="checkbox" id="DarkMode" name="darkMode" value="Dark">
+    <label for="DarkMode"> Dark mode</label><br>
+    <script>
+        const darkModeCheckbox = document.getElementById('DarkMode');
+        const body = document.body;
+
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
+            darkModeCheckbox.checked = true;
+        }
+        darkModeCheckbox.addEventListener('change', () => {
+            if (darkModeCheckbox.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'false');
+            }
+        });
+    </script>
 </body>
 </html>
